@@ -2,9 +2,11 @@
 <resources>
     <integer name="enemy_x_init">200</integer>
     <integer name="enemy_x_speed">14</integer>
-    <integer name="enemy_y_speed">11</integer>
-    <integer name="enemy_spacing_factor">-250</integer>
-    <integer name="num_enemies">10</integer>
-    <integer name="bullet_spacing_factor">200</integer>
+    <integer name="enemy_y_speed">13</integer>
+    <integer name="enemy_spacing_factor">-300</integer>
+    <integer name="num_enemies">9</integer>
+
+    <integer name="bullet_speed">35</integer>
+    <integer name="bullet_spacing_factor">250</integer>
     <integer name="num_bullets">3</integer>
 </resources>

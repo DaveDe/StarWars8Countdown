@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 public class Bullet {
     private int x;
     private int y;
+    private int bulletSpeed;
     private GameView gameView;
     private Bitmap bmp;
     private boolean a;
@@ -18,6 +19,7 @@ public class Bullet {
         this.x = x;
         this.y = y;
         a = false;
+        this.bulletSpeed = gameView.getResources().getInteger(R.integer.bullet_speed);
 
     }
 
@@ -29,7 +31,7 @@ public class Bullet {
             a = false;
         }
         if(y <= gameView.getHeight()) {
-            y -= 35;
+            y -= bulletSpeed;
         }
         for(int i = 0; i < gameView.getEnemies().length; i++){
             if((x >= gameView.getEnemiesIndex(i).getX()) && (x <= gameView.getEnemiesIndex(i).getX() + gameView.getEnemiesIndex(i).getBmp().getWidth())

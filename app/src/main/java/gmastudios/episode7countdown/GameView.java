@@ -65,7 +65,7 @@ public class GameView extends SurfaceView {
 
         int numBullets = getResources().getInteger(R.integer.num_bullets);
         int numEnemies = getResources().getInteger(R.integer.num_enemies);
-        
+
         enemies = new Enemies[numEnemies];
         bullets = new Bullet[numBullets];
         p = new Paint();
@@ -151,10 +151,10 @@ public class GameView extends SurfaceView {
                 bullets[i].onDraw(canvas);
             }
         }else {
-            canvas.drawText("Game Over", scaledFontSize*4, scaledFontSize*7, p);
+            canvas.drawText("Game Over", scaledFontSize*3, scaledFontSize*7, p);
             try{
                 int highscore = Integer.parseInt(StaticMethods.readFirstLine("highscore.txt",getContext()));
-                canvas.drawText("Highscore: " + Integer.toString(highscore), scaledFontSize*4,  scaledFontSize*20, p);
+                canvas.drawText("Highscore: " + Integer.toString(highscore), scaledFontSize*2,  scaledFontSize*20, p);
             }catch(IOException e){}
         }
     }
