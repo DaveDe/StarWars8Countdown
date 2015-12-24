@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="enemy_x_init">300</integer>
+    <integer name="enemy_x_speed">17</integer>
+    <integer name="enemy_y_speed">13</integer>
+    <integer name="enemy_spacing_factor">-300</integer>
+    <integer name="num_enemies">11</integer>
+    <integer name="bullet_spacing_factor">300</integer>
+    <integer name="num_bullets">4</integer>
+</resources>
