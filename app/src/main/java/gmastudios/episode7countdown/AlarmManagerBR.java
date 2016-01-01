@@ -17,9 +17,6 @@ public class AlarmManagerBR extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "YOUR TAG");
-        wl.acquire();
 
         Calendar c = Calendar.getInstance();
         long timeInMillis = c.getTimeInMillis();
@@ -32,15 +29,15 @@ public class AlarmManagerBR extends BroadcastReceiver {
         millisUntil-=(minutes*(1000*60));
         long seconds = millisUntil/1000;
 
-        String finalTime = Long.toString(days)+ " Days   "+Long.toString(hours)+" Hours \n"
+        String title = "Episode 8\n\n";
+
+        String finalTime = title + Long.toString(days)+ " Days   "+Long.toString(hours)+" Hours \n"
                 + Long.toString(minutes) + " Minutes  " + Long.toString(seconds) + " Seconds";
 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         remoteViews.setTextViewText(R.id.update, finalTime);
-       // remoteViews.setImageViewResource(R.id.backgroundImage, R.drawable.stars);
-        ComponentName thiswidget = new ComponentName(context, MyWidgetProvider.class);
+        ComponentName thiswidget = new ComponentName(context,MyWidgetProvider.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(context);
         manager.updateAppWidget(thiswidget, remoteViews);
-        wl.release();
     }
 }

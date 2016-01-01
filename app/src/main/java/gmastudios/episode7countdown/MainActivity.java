@@ -2,6 +2,7 @@ package gmastudios.episode7countdown;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,13 +16,20 @@ import java.util.Calendar;
 
 public class MainActivity extends Activity {
 
+    public static boolean adShown;
+    public static final String SHAREDPREFS = "data";
+
     private final long COUNTDOWNDATE = 1495774800000l;
+    private final long ROGUEONE = 1481864400000l;
 
     private boolean pause;
 
     private TextView countdown;
     private TextView more;
+
     private TimerThread thread;
+    private SharedPreferences settings;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -31,7 +39,24 @@ public class MainActivity extends Activity {
         countdown = (TextView) findViewById(R.id.countdown);
         more = (TextView) findViewById(R.id.more);
 
+        settings = getSharedPreferences(SHAREDPREFS,0);
+        editor = settings.edit();
+
         pause = false;
+        adShown = false;
+
+        countdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mode = settings.getString("mode","Rogue One");
+                if(mode.equals("Rogue One")){
+                    editor.putString("mode","Episode 8");
+                }else{
+                    editor.putString("mode","Rogue One");
+                }
+                editor.commit();
+            }
+        });
 
         more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +83,11 @@ public class MainActivity extends Activity {
     protected void onPause(){
         super.onPause();
 
-        pause = true;
+        if(!adShown){
+            pause = true;
+        }
+
+        adShown = false;
 
     }
 
@@ -94,9 +123,17 @@ public class MainActivity extends Activity {
     }
 
     private void updateTimeLeft(){
+
+        String mode = settings.getString("mode","Rogue One");
+
         Calendar c = Calendar.getInstance();
         long timeInMillis = c.getTimeInMillis();
-        long millisUntil = COUNTDOWNDATE - timeInMillis;
+        long millisUntil = 0;
+        if(mode.equals("Rogue One")){
+            millisUntil = ROGUEONE - timeInMillis;
+        }else{
+            millisUntil = COUNTDOWNDATE - timeInMillis;
+        }
         long days = millisUntil/(1000*60*60*24);
         millisUntil-=(days*(1000*60*60*24));
         long hours = millisUntil/(1000*60*60);
@@ -105,7 +142,7 @@ public class MainActivity extends Activity {
         millisUntil-=(minutes*(1000*60));
         long seconds = millisUntil/1000;
 
-        countdown.setText(Long.toString(days)+" Days\n"
+        countdown.setText(mode + "\n\n" +Long.toString(days)+" Days\n"
                 +Long.toString(hours)+" Hours\n"
                 +Long.toString(minutes)+" Minutes\n"
                 +Long.toString(seconds)+" Seconds\n");

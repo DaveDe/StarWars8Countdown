@@ -44,7 +44,6 @@ public class GameView extends SurfaceView {
     InterstitialAd mInterstitialAd;
     private int ad;
     private int scaledFontSize;
-    private int bulletTimer;
 
     public GameView(Context context) {
         super(context);
@@ -129,7 +128,6 @@ public class GameView extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        bulletTimer++;
         double height = getHeight();
         double width = getWidth();
 
@@ -154,7 +152,7 @@ public class GameView extends SurfaceView {
             canvas.drawText("Game Over", scaledFontSize*3, scaledFontSize*7, p);
             try{
                 int highscore = Integer.parseInt(StaticMethods.readFirstLine("highscore.txt",getContext()));
-                canvas.drawText("Highscore: " + Integer.toString(highscore), scaledFontSize*2,  scaledFontSize*20, p);
+                canvas.drawText("Highscore: " + Integer.toString(highscore), scaledFontSize*2,  scaledFontSize*21, p);
             }catch(IOException e){}
         }
     }
@@ -166,6 +164,7 @@ public class GameView extends SurfaceView {
         }else{
             if (mInterstitialAd.isLoaded() && (ad%3==0)) {
                 mInterstitialAd.show();
+                MainActivity.adShown = true;
             }else {
                 requestNewInterstitial();
                 restart();
