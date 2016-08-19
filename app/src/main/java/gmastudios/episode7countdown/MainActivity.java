@@ -6,12 +6,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends Activity {
@@ -19,7 +16,7 @@ public class MainActivity extends Activity {
     public static boolean adShown;
     public static final String SHAREDPREFS = "data";
 
-    private final long COUNTDOWNDATE = 1495774800000l;
+    private final long COUNTDOWNDATE = 1513296000000l;
     private final long ROGUEONE = 1481864400000l;
 
     private boolean pause;
@@ -61,9 +58,9 @@ public class MainActivity extends Activity {
         more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //open link to Addon
+                //open link to developer page
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("market://details?id=add.on.dave.sumrun"));
+                intent.setData(Uri.parse("market://search?q=pub:David DeFazio"));
                 startActivity(intent);
             }
         });

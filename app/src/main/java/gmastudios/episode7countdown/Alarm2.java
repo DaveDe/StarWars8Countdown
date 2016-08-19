@@ -27,7 +27,7 @@ public class Alarm2 extends BroadcastReceiver {
         millisUntil-=(minutes*(1000*60));
         long seconds = millisUntil/1000;
 
-        String title = "Rogue One\n\n";
+        String title = "Rogue One\n";
 
         String finalTime = title + Long.toString(days)+ " Days   "+Long.toString(hours)+" Hours \n"
                 + Long.toString(minutes) + " Minutes  " + Long.toString(seconds) + " Seconds";

@@ -13,7 +13,7 @@ import java.util.Calendar;
 
 public class AlarmManagerBR extends BroadcastReceiver {
 
-    private final long COUNTDOWNDATE = 1495774800000l;
+    private final long COUNTDOWNDATE = 1513296000000l;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -29,7 +29,7 @@ public class AlarmManagerBR extends BroadcastReceiver {
         millisUntil-=(minutes*(1000*60));
         long seconds = millisUntil/1000;
 
-        String title = "Episode 8\n\n";
+        String title = "Episode 8\n";
 
         String finalTime = title + Long.toString(days)+ " Days   "+Long.toString(hours)+" Hours \n"
                 + Long.toString(minutes) + " Minutes  " + Long.toString(seconds) + " Seconds";

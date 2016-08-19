@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal|center_vertical"
         android:layout_margin="4dip"
-        android:text="" >
+        android:textSize="20sp" >
     </TextView>
 
 </FrameLayout>
